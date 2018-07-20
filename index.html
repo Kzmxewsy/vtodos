@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Todos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="source/app.min.css">
+    <!--<link rel="stylesheet" href="source/bootstrap.min.css">-->
+    <!--<link rel="shortcut icon" type="image/x-icon" href="{{ url('img/favicon.ico') }}"/>-->
+    <link rel="shortcut icon" type="image/x-icon">
+</head>
+<body>
+<div id="app" class="container" v-cloak>
+    <div class="page-header">
+        <h2>Todos <span class="badge" style="background-color: steelblue" v-text="count"></span></h2>
+    </div>
+
+    <div v-show="seen" class="alert alert-warning">
+        <strong>请输入内容</strong>
+    </div>
+
+    <div class="form-group">
+        <input type="text" v-model="detail" class="form-control" autocomplete="off" @keyup.enter="add"
+               placeholder="What needs to be done ?">
+    </div>
+
+    <div class="form-group">
+        <!--<button v-on:click="add" class="btn btn-default flarge16">+</button>-->
+    </div>
+
+    <ul v-for="(todo,index ) in todos" class="list-group">
+        <div :class="current_class[index]" role="alert">{{todo.text}}<span
+                v-on:click="del(index)"
+                class="glyphicon-class glyphicon glyphicon-remove fr lh20 flarge25"></span>
+            <span class="fr lh23">{{ getdate(todo.time) }}&nbsp;</span>
+        </div>
+    </ul>
+</div>
+
+<script src="source/vue.min.js"></script>
+<script src="source/app.min.js"></script>
+</body>
+</html>
